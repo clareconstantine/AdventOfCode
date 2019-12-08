@@ -3,6 +3,10 @@
 # it builds off the code from day 2
 #
 
+def position? mode
+  mode == 0
+end
+
 # return an array with the modes for the params (always length 3)
 def get_modes instruction
   modes = instruction.to_s.chars.map(&:to_i)
@@ -21,22 +25,61 @@ def compute input
   diagnostic_code = nil
 
   while i < memory.length
-    modes = get_modes(memory[i])
     opcode = memory[i] % 100 # the opcode is the 1's and 10's place
 
+    modes = get_modes(memory[i])
+    mode_1 = modes[0]
+    mode_2 = modes[1]
+    mode_3 = modes[2]
+
+    if [1, 2, 4, 5, 6, 7, 8].include? opcode
+      param_1 = memory[(position?(mode_1) ? memory[i+1] : i+1)]
+    end
+
+    if [1, 2, 5, 6, 7, 8].include? opcode
+      param_2 = memory[(position?(mode_2) ? memory[i+2] : i+2)]
+    end
+
     if opcode == 1
-      memory[(modes[2] == 0 ? memory[i+3] : i+3)] = memory[(modes[1] == 0 ? memory[i+2] : i+2)] + memory[(modes[0] == 0 ? memory[i+1] : i+1)]
+      # add
+      memory[(position?(mode_3) ? memory[i+3] : i+3)] = param_1 + param_2
       i += 4
     elsif opcode == 2
-      memory[(modes[2] == 0 ? memory[i+3] : i+3)] = memory[(modes[1] == 0 ? memory[i+2] : i+2)] * memory[(modes[0] == 0 ? memory[i+1] : i+1)]
+      # multiply
+      memory[(position?(mode_3) ? memory[i+3] : i+3)] = param_1 * param_2
       i += 4
     elsif opcode == 3
-      memory[(modes[0] == 0 ? memory[i+1] : i+1)] = input
+      # input
+      memory[(position?(mode_1) ? memory[i+1] : i+1)] = input
       i += 2
     elsif opcode == 4
-      diagnostic_code = memory[(modes[0] == 0 ? memory[i+1] : i+1)]
+      # output
+      diagnostic_code = param_1
       i += 2
+    elsif opcode == 5
+      # jump-if-true
+      if param_1 != 0
+        i = param_2
+      else
+        i += 3
+      end
+    elsif opcode == 6
+      # jump-if-false
+      if param_1 == 0
+        i = param_2
+      else
+        i += 3
+      end
+    elsif opcode == 7
+      # less than
+      memory[(position?(mode_3) ? memory[i+3] : i+3)] = (param_1 < param_2 ? 1 : 0)
+      i += 4
+    elsif opcode == 8
+      # equals
+      memory[(position?(mode_3) ? memory[i+3] : i+3)] = (param_1 == param_2 ? 1 : 0)
+      i += 4
     elsif opcode == 99
+      # halt
       break
     end
   end
@@ -44,3 +87,4 @@ def compute input
 end
 
 puts compute 1
+puts compute 5
