@@ -5,6 +5,10 @@
 WIDTH = 25
 HEIGHT = 6
 
+BLACK = "0"
+WHITE = "1"
+TRANSPARENT = "2"
+
 def image_layers width, height
   image_data = File.read("day_8_input.txt").chomp.chars
   layers = []
@@ -15,6 +19,7 @@ def image_layers width, height
 end
 
 # part 1
+
 def part_1 layers
   min_0_count = WIDTH * HEIGHT + 1
   solution = nil
@@ -40,6 +45,37 @@ def part_1 layers
   puts "Part 1: #{solution}"
 end
 
+# part 2
+
+def visible_pixels layers
+  visible_pixels = []
+  i = 0
+  while i < layers.first.length
+    ith_pixels = layers.map {|layer| layer[i]}
+    visible_pixel = ith_pixels.find{|pix| pix != TRANSPARENT }
+    # replace black with ' ' to make it easier to see image
+    visible_pixel = ' ' if visible_pixel == BLACK
+    visible_pixels.push(visible_pixel)
+    i += 1
+  end
+  visible_pixels
+end
+
+def print_image layer
+  HEIGHT.times do
+    puts layer.shift(WIDTH).join
+  end
+end
+
+def part_2 layers
+  visible_layer = visible_pixels layers
+
+  print_image visible_layer
+end
+
 layers = image_layers WIDTH, HEIGHT
 
 part_1 layers
+part_2 layers
+
+
