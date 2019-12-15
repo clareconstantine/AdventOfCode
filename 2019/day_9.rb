@@ -110,7 +110,6 @@ class Amplifier
   end
 
   def address mode, index
-              # 0, 5
     case mode
     when IMMEDIATE
       index
