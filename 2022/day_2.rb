@@ -1,37 +1,51 @@
+def symbol_points their_move, result
+  symbols = {
+    A: 1, # "rock",
+    B: 2, # "paper",
+    C: 3, # "scissors",
+  }
 
-def win_points game
-  score = 0
-  if ["A X", "B Y", "C Z"].include? game
-    score = 3
-  elsif ["A Z", "B X", "C Y"].include? game
-    score = 0
-  else
-    score = 6
-  end
+  result_transformations = {
+    X: -1,
+    Y: 0,
+    Z: 1
+  }
 
-  score
+  points = (symbols[their_move] + result_transformations[result])
+  points += 3 if points < 1
+  points -= 3 if points > 3
+  points
 end
 
-def symbol_points game
-  score = 0
-  if game[2] == "X"
-    score = 1
-  elsif game[2] == "Y"
-    score = 2
-  else
-    score = 3
-  end
+def result_points result
+  results = {
+    X: 0, # "loss",
+    Y: 3, # "draw",
+    Z: 6, # "win"
+  }
 
-  score
+  results[result]
+end
+
+def score game
+  result = game[2].to_sym
+  their_move = game[0].to_sym
+
+  result_points(result) + symbol_points(their_move, result)
 end
 
 def main
   games = File.open("day_2_input.txt").readlines.map(&:chomp)
+  # games = ["A Y", "B X", "C Z"]
   total_score = 0
   games.each do |game|
-    total_score += win_points(game) + symbol_points(game)
+    total_score += score(game) unless game == ""
   end
   p total_score
 end
 
 main
+# p score("A X")
+# p score("B Z")
+# p score("C Y")
+
