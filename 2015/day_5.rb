@@ -68,7 +68,7 @@ def part_2 strings
 end
 
 def main
-  strings = File.open("day_5_input.txt").readlines.map(&:chomp)
+  strings = File.open("input/day_5.txt").readlines.map(&:chomp)
   # strings = ["ugknbfddgicrmopn", "aaa", "jchzalrnumimnmhp", "haegwjzuvuyypxyu", "dvszwmarrgswjxmb"]
   # part_1(strings)
   part_2(strings)

@@ -13,7 +13,7 @@ def contained_assignment row
 end
 
 def main
-  assignment_rows = File.open("day_4_input.txt").readlines.map(&:chomp)
+  assignment_rows = File.open("input/day_4.txt").readlines.map(&:chomp)
 
   contained_assignment_count = 0
   assignment_rows.each do |row|

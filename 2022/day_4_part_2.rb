@@ -29,7 +29,7 @@ def contained_assignment row
 end
 
 def main
-  assignment_rows = File.open("day_4_input.txt").readlines.map(&:chomp)
+  assignment_rows = File.open("input/day_4.txt").readlines.map(&:chomp)
   # assignment_rows = [
   #   "2-4,6-8",
   #   "2-3,4-5",

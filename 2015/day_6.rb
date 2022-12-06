@@ -74,7 +74,7 @@ def part_2 directions
 end
 
 def main
-  directions = File.open("day_6_input.txt").readlines.map do |dir|
+  directions = File.open("input/day_6.txt").readlines.map do |dir|
     dir.chomp.split(',')
   end
 

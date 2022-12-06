@@ -62,7 +62,7 @@ def part_2 directions
 end
 
 def main
-  directions = File.open("day_3_input.txt").readlines.map(&:chomp)[0].chars
+  directions = File.open("input/day_3.txt").readlines.map(&:chomp)[0].chars
 
   p "part 1: #{part_1(directions)}"
   p "part 2: #{part_2(directions)}"

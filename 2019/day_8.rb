@@ -10,7 +10,7 @@ WHITE = "1"
 TRANSPARENT = "2"
 
 def image_layers width, height
-  image_data = File.read("day_8_input.txt").chomp.chars
+  image_data = File.read("input/day_8.txt").chomp.chars
   layers = []
   while image_data.length > 0
     layers.push(image_data.shift(width*height))

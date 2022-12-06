@@ -21,7 +21,7 @@ def find_marker stream, marker_length
 end
 
 def main
-  stream = File.open("day_6_input.txt").readlines.map(&:chomp)[0].chars
+  stream = File.open("input/day_6.txt").readlines.map(&:chomp)[0].chars
 
   p part_1(stream)
   p part_2(stream)

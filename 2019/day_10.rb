@@ -23,7 +23,7 @@ end
 class AsteroidMap
   def initialize
     @asteroid_map = {}
-    rows = File.open("day_10_input.txt").readlines.map(&:chomp)
+    rows = File.open("input/day_10.txt").readlines.map(&:chomp)
     @width = rows[0].length
     @height = rows.length
 

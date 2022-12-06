@@ -35,7 +35,7 @@ def score game
 end
 
 def main
-  games = File.open("day_2_input.txt").readlines.map(&:chomp)
+  games = File.open("input/day_2.txt").readlines.map(&:chomp)
   # games = ["A Y", "B X", "C Z"]
   total_score = 0
   games.each do |game|

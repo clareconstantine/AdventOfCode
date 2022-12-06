@@ -12,7 +12,7 @@ def get_priority char
 end
 
 def main
-  rucksacks = File.open("day_3_input.txt").readlines.map(&:chomp)
+  rucksacks = File.open("input/day_3.txt").readlines.map(&:chomp)
   priority_sum = 0
 
   rucksacks.each_slice(3) do |group|

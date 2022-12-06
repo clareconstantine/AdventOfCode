@@ -21,7 +21,7 @@ def box_ribbon box
 end
 
 def main
-  boxes = File.open("day_2_input.txt").readlines.map(&:chomp)
+  boxes = File.open("input/day_2.txt").readlines.map(&:chomp)
 
   total_paper = 0
   total_ribbon = 0

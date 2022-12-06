@@ -45,7 +45,7 @@ end
 class UniversalOrbitMap
   def initialize
     orbit_map = {}
-    unprocessed_map = File.open("day_6_input.txt").readlines.map(&:chomp)
+    unprocessed_map = File.open("input/day_6.txt").readlines.map(&:chomp)
     unprocessed_map.each do |orbit|
       orbiter_id = orbit.split(')')[1]
       orbited_id = orbit.split(')')[0]

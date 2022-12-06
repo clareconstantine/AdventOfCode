@@ -1,4 +1,4 @@
-require './day_3_input'
+require './input/day_3'
 
 #
 # This is a solution for https://adventofcode.com/2019/day/3

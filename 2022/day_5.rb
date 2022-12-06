@@ -72,7 +72,7 @@ def starting_stacks
 end
 
 def main
-  directions = File.open("day_5_input.txt").readlines.map(&:chomp)
+  directions = File.open("input/day_5.txt").readlines.map(&:chomp)
   # directions = [
   #   "1,2,1",
   #   "3,1,3",

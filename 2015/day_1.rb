@@ -1,4 +1,4 @@
-input = File.open("day_1_input.txt").readlines.map(&:chomp)[0]
+input = File.open("input/day_1.txt").readlines.map(&:chomp)[0]
 
 floor = 0
 
