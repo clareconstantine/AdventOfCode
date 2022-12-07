@@ -51,8 +51,29 @@ def find_part_1_answer root
 end
 
 def part_2 root
+  total_disk_space = 70000000
+  required_unused_space = 30000000
 
+  # set size on root
+  sum = 0
+  root.children.each do |node|
+    sum += node.content
+  end
+  root.content = sum
 
+  current_unused_space = total_disk_space - root.content
+  space_to_delete = required_unused_space - current_unused_space
+  size_of_smallest_directory_to_delete(root, space_to_delete)
+end
+
+def size_of_smallest_directory_to_delete root, space_to_delete
+  node_to_delete = root
+  root.each do |node|
+    if !node.leaf? && node.content >= space_to_delete && node.content < node_to_delete.content
+      node_to_delete = node
+    end
+  end
+  node_to_delete.content
 end
 
 def main
@@ -61,10 +82,10 @@ def main
     line
   end
 
-  output = File.open("input/test_input.txt").readlines.map do |line|
-    line = line.chomp.split()
-    line
-  end
+  # output = File.open("input/test_input.txt").readlines.map do |line|
+  #   line = line.chomp.split()
+  #   line
+  # end
 
   file_tree_with_sizes = part_1(output)
   p find_part_1_answer(file_tree_with_sizes)
