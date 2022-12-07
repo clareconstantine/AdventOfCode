@@ -34,18 +34,23 @@ def part_1 output
     end
   end
 
+  root
+end
+
+def find_part_1_answer root
   sum = 0
 
   root.each do |node|
-    p "on node #{node.name}"
     if node.content <= 100000 && !node.leaf?
-      p "adding content: #{node.content}"
       sum += node.content
     end
   end
+
   sum
 end
-def part_2 output
+
+def part_2 root
+
 
 end
 
@@ -55,13 +60,14 @@ def main
     line
   end
 
-  # output = File.open("input/test_input.txt").readlines.map do |line|
-  #   line = line.chomp.split()
-  #   line
-  # end
+  output = File.open("input/test_input.txt").readlines.map do |line|
+    line = line.chomp.split()
+    line
+  end
 
-  p part_1(output)
-  p part_2(output)
+  file_tree_with_sizes = part_1(output)
+  p find_part_1_answer(file_tree_with_sizes)
+  p part_2(file_tree_with_sizes)
 end
 
 main
