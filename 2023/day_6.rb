@@ -7,7 +7,11 @@ class BoatRaceCalculator
     @time = input[0].scan(/\d+/).map(&:to_i)
     @distance = input[1].scan(/\d+/).map(&:to_i)
 
-    @races = setup_races
+    @part_1_races = setup_races
+    @part_2_race = {
+      time: input[0].delete(' ').scan(/\d+/).map(&:to_i)[0],
+      record: input[1].delete(' ').scan(/\d+/).map(&:to_i)[0]
+    }
   end
 
   # Parts =========================================
@@ -19,14 +23,14 @@ class BoatRaceCalculator
   # and multiply them together
   def part_1
     result = 1
-    @races.each do |race|
+    @part_1_races.each do |race|
       result = result * ways_to_win(race)
     end
     result
   end
 
   def part_2
-   "xmas!"
+    ways_to_win(@part_2_race)
   end
 
   # Helpers =======================================
