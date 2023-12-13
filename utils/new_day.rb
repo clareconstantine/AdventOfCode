@@ -12,7 +12,7 @@ def main
 
   File.open("./#{path_snippet}.rb", 'w') do |program_file|
     program_file.puts("PATH_SNIPPET = \"#{path_snippet}\"\n")
-    File.foreach("../utils/program_template.rb") do |line|
+    File.foreach("../utils/oop_program_template.rb") do |line|
       program_file.puts(line)
     end
   end
