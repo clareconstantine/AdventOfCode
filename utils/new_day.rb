@@ -6,13 +6,19 @@ require "nokogiri"
 
 def main
   day = ARGV[0]
-  part = ARGV[1]
+  if ARGV[1] == "oop"
+    part = nil
+    oop = ARGV[1]
+  else
+    part = ARGV[1]
+    oop = nil
+  end
 
   path_snippet = "day_#{day}#{part ? "_part_#{part}" : ""}"
 
   File.open("./#{path_snippet}.rb", 'w') do |program_file|
     program_file.puts("PATH_SNIPPET = \"#{path_snippet}\"\n")
-    File.foreach("../utils/oop_program_template.rb") do |line|
+    File.foreach("../utils/#{oop ? "oop_" : ""}program_template.rb") do |line|
       program_file.puts(line)
     end
   end
