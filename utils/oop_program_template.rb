@@ -9,6 +9,8 @@ class ClassName
     puts part_2
   end
 
+  # Constants =====================================
+
   # Parts =========================================
 
   def part_1

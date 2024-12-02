@@ -6,6 +6,8 @@ def main
   puts part_2(input)
 end
 
+# Constants =====================================
+
 # Parts =========================================
 
 def part_1 input
