@@ -67,7 +67,12 @@ def parse_input input_str, signals
 end
 
 def main
-  instructions = File.open("input/day_7.txt").readlines.map do |line|
+  part_1_instructions = File.open("input/day_7.txt").readlines.map do |line|
+    line = line.chomp.split(' -> ')
+    line
+  end
+
+  part_2_instructions = File.open("input/day_7_part_2.txt").readlines.map do |line|
     line = line.chomp.split(' -> ')
     line
   end
@@ -83,9 +88,11 @@ def main
   #   ["NOT y", "i"]
   # ]
 
-  wire_a_signal = build_circuit(instructions)
-  p wire_a_signal
-  p build_circuit(instructions.unshift([wire_a_signal.to_s, "b"]))
+  wire_a_signal_part_1 = build_circuit(part_1_instructions)
+  p wire_a_signal_part_1
+
+  wire_a_signal_part_2 = build_circuit(part_2_instructions)
+  p wire_a_signal_part_2
 end
 
 main
